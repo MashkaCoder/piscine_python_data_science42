@@ -1,5 +1,6 @@
- #!/bin/bash
-if [[ $# -eq 0 ]]
+#!/usr/bin/env sh
+
+if [ $# -eq 0 ]
 then my_path="../ex02/hh_sorted.csv"
 else
   my_path=$1

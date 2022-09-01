@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
-if [[ $# -eq 0 ]]
+#!/usr/bin/env sh
+
+if [ $# -eq 0 ]
 then
   my_path="../ex00/hh.json"
 else
