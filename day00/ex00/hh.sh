@@ -10,7 +10,6 @@ fi
   --data-urlencode "text=${VACANCY}"\
   --data-urlencode 'page=0'\
   --data-urlencode 'per_page=20'\
-  --data-urlencode 'area=1'\
   | jq > hh.json
 
 
