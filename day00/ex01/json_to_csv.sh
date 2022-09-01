@@ -1,7 +1,8 @@
-#!bin/bash
-if [[ $# -eq 1 ]]
+#!/usr/bin/env bash
+if [[ $# -eq 0 ]]
 then
-  jq -rf filter.jq $1 > hh.csv
+  my_path="../ex00/hh.json"
 else
-  echo "json file expected"
+  my_path=$1
 fi
+  jq -rf filter.jq ${my_path} > hh.csv
