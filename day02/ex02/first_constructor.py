@@ -14,7 +14,15 @@ class Research:
             return False
         if len(header_list[0].replace(" ", "")) == 0 or len(header_list[0].replace(" ", "")) == 0:
             return False
-        return True
+        # this is my strange check that the header contains strings, not numbers
+        try:
+            int_header_list = []
+            for i in range(len(header_list) - 1):
+                int_header_list.append(int(header_list[i]))
+        except TypeError:
+            return True
+        else:
+            return False
 
     def __chek_lines(self, line: str) -> bool:
         valid = [['1', '0'], ['0', '1']]
