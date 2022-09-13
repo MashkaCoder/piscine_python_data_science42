@@ -14,15 +14,7 @@ class Research:
             return False
         if len(header_list[0].replace(" ", "")) == 0 or len(header_list[0].replace(" ", "")) == 0:
             return False
-        # this is my strange check that the header contains strings, not numbers
-        try:
-            int_header_list = []
-            for i in range(len(header_list) - 1):
-                int_header_list.append(int(header_list[i]))
-        except TypeError:
-            return True
-        else:
-            return False
+        return True
 
     def __chek_lines(self, line: str) -> bool:
         valid = [['1', '0'], ['0', '1']]
@@ -40,6 +32,7 @@ class Research:
         with open(self.path, 'r') as file:
             header = file.readline()
             if not self.__chech_header(header):
+                print("xiy")
                 raise ValueError("Incorrect format header")
             text += header
             i = 0
@@ -59,7 +52,7 @@ def main():
         try:
             res = Research(sys.argv[1])
             print(res.file_reader())
-        except Exception as err:
+        except (ValueError, PermissionError) as err:
             print(type(err).__name__, err, sep=': ')
     else:
         print("Wrong number of parameters")
