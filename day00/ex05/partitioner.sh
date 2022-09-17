@@ -1,11 +1,14 @@
 #!/usr/bin/env sh
 
-if [ $# -ne 1 ]
+if [ $# -eq 0 ]
 then
-    echo "Please enter input file from ex03 or any other with extension .csv"
+    my_path='../ex03/hh_positions.csv'
 else
+    my_path=$1
+fi
 {
-    awk ' BEGIN { FS = "\",\"|T" }
+    cat $my_path \
+    | awk ' BEGIN { FS = "\",\"|T" }
         {
             if (NR == 1)
                 START = $0
@@ -22,7 +25,6 @@ else
         }
         ' $1
 }
-fi
 
 
 

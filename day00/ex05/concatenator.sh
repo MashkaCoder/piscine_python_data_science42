@@ -2,14 +2,15 @@
 
 if [ $# -eq 0 ]
 then
-  echo "Please enter input files from the result of partitioner.sh"
+    my_path='../ex03/hh_positions.csv'
 else
+    my_path=$1
+fi
 {
-  list=($*)
-  head -n 1 ${list[0]} > concatenates.csv
-  for i in ${list[@]}
+  rm concatenates.csv 2>/dev/null
+  head -n 1 $my_path > concatenates.csv
+  for i in *[0123456789].csv
   do
     tail -n +2 $i >> concatenates.csv
   done
 }
-fi
