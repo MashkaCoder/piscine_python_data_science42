@@ -3,7 +3,6 @@
 if [ $# -eq 0 ]
 then
   VACANCY='data scientist'
-  echo ${VACANCY}
 else
   VACANCY=$1
 fi
