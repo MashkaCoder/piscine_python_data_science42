@@ -10,8 +10,8 @@ tail -n 20 ${my_path} | \
 awk \
     'BEGIN{
       FS=OFS="\",";
-      Regexes[0] = "[Jj]unior\\+?/?";
-      Regexes[2] = "[Mm]iddle\\+?/?";
+      Regexes[0] = "[Jj]unior\\+?[/\]?";
+      Regexes[2] = "[Mm]iddle\\+?[/\]?";
       Regexes[4] = "[Ss]enior";
     }
     {
@@ -21,6 +21,9 @@ awk \
         match($3, Regexes[i]);
         if (RLENGTH > 0) {
           first_char = substr($3, RSTART, 1);
+          if (length(result) > 0) {
+              result = result "/";
+          }
           result = result toupper(first_char) substr($3, RSTART + 1, RLENGTH - 1);
         }
       }
@@ -30,7 +33,6 @@ awk \
       else {
         $3 = "\"" result;
       }
-
       print;
     }' \
     >> hh_positions.csv
