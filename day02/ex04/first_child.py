@@ -12,7 +12,7 @@ class Research:
         header_list = header.split(",")
         if (len(header_list)) != 2:
             return False
-        if len(header_list[0].replace(" ", "")) == 0 or len(header_list[0].replace(" ", "")) == 0:
+        if len(header_list[0].replace(" ", "")) == 0 or header_list[1] == '\n':
             return False
         return True
 
@@ -29,20 +29,24 @@ class Research:
         if not os.access(self.path, os.R_OK):
             raise PermissionError("Permission denied ", self.path)
         res_list = []
+        count_csv_lines = 0
         with open(self.path, 'r') as file:
             if has_header:
                 header = file.readline()
-                if not self.__check_header(header):
-                    raise ValueError("Incorrect format header")
-                if header.replace('\n', '') == "0,1" or header.replace('\n', '') == "1,0":
+                if self.__check_lines(header):
                     has_header = False
+                else:
+                    if not self.__check_header(header):
+                        raise ValueError("Incorrect format header")
+                    if header.replace('\n', '') == "0,1" or header.replace('\n', '') == "1,0":
+                        has_header = False
             if not has_header:
                 numbers = []
                 header = header.split(",")
                 for ch in header:
                     numbers.append(int(ch))
                 res_list.append(numbers)
-            i = 0
+                count_csv_lines = 1
             for line in file:
                 if not self.__check_lines(line):
                     raise ValueError("Incorrect format csv line")
@@ -51,8 +55,8 @@ class Research:
                 for ch in line:
                     numbers.append(int(ch))
                 res_list.append(numbers)
-                i += 1
-            if i == 0:
+                count_csv_lines += 1
+            if count_csv_lines == 0:
                 raise ValueError("Incorrect format csv line")
         file.close()
         return res_list
@@ -85,7 +89,7 @@ class Research:
                 random_n = randint(0, 1)
                 res.append([random_n, int(not random_n)])
                 num -= 1
-            return num
+            return res
 
 
 def main():
