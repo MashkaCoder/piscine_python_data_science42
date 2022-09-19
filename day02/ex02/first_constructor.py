@@ -12,7 +12,7 @@ class Research:
         header_list = header.split(",")
         if (len(header_list)) != 2:
             return False
-        if len(header_list[0].replace(" ", "")) == 0 or len(header_list[0].replace(" ", "")) == 0:
+        if len(header_list[0].replace(" ", "")) == 0 or header_list[1] == '\n':
             return False
         return True
 
@@ -32,7 +32,6 @@ class Research:
         with open(self.path, 'r') as file:
             header = file.readline()
             if not self.__chech_header(header):
-                print("xiy")
                 raise ValueError("Incorrect format header")
             text += header
             i = 0
