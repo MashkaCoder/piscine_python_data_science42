@@ -1,0 +1,1 @@
+termgraph pies_bars.dat --color {magenta,cyan}
