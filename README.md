@@ -1,4 +1,4 @@
-# piscine_python_data_science42
+# Piscine Python Data Science42
 - Day 00: UNIX Command Line Tools  
       
 - Day 01: Intro to Python: Syntax and Semantics  
